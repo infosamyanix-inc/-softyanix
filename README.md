@@ -1,70 +1,167 @@
-# Welcome to your Lovable project
+# Softyanix - Digital Solutions Agency
 
-## Project info
+A modern, full-featured website for Softyanix, showcasing our expertise in MERN stack development, AI chatbots, mobile apps, and UI/UX design.
 
-**URL**: https://lovable.dev/projects/37d37553-fe4b-4235-aa3b-7eed65cd1c3e
+## 🚀 Features
 
-## How can I edit this code?
+- **Responsive Design**: Fully responsive across all devices
+- **Modern UI**: Built with shadcn/ui components and Tailwind CSS
+- **Fast Performance**: Powered by Vite for optimal build and development speed
+- **Type-Safe**: Written in TypeScript for better code quality
+- **WhatsApp Integration**: Direct communication with clients via WhatsApp
+- **Contact Form**: Backend API for handling contact form submissions
+- **Multi-Page Application**: Home, Services, Projects, About, and Contact pages
+- **Smooth Animations**: Engaging user experience with modern animations
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+### Frontend
+- **React 18** - Modern React with hooks
+- **TypeScript** - Type-safe code
+- **Vite** - Next-generation frontend tooling
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful, accessible component library
+- **React Router** - Client-side routing
+- **Lucide Icons** - Modern icon library
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/37d37553-fe4b-4235-aa3b-7eed65cd1c3e) and start prompting.
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express** - Web application framework
+- **CORS** - Cross-origin resource sharing
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📋 Prerequisites
 
-**Use your preferred IDE**
+Before running this project, make sure you have the following installed:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Node.js** (v18 or higher) - [Download](https://nodejs.org/)
+- **npm** or **bun** - Package manager
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🔧 Installation
 
-Follow these steps:
-
+1. **Clone the repository**
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+git clone https://github.com/infosamyanix-inc/-softyanix.git
+cd -softyanix
 ```
 
-**Edit a file directly in GitHub**
+2. **Install frontend dependencies**
+```sh
+npm install
+# or
+bun install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. **Install backend dependencies**
+```sh
+cd backend
+npm install
+cd ..
+```
 
-**Use GitHub Codespaces**
+## 🚀 Running the Application
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Development Mode
 
-## What technologies are used for this project?
+1. **Start the frontend development server**
+```sh
+npm run dev
+# or
+bun dev
+```
+The frontend will run on `http://localhost:5173`
 
-This project is built with:
+2. **Start the backend server** (in a separate terminal)
+```sh
+cd backend
+node server.js
+```
+The backend API will run on `http://localhost:3000`
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Production Build
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+# Build the frontend
+npm run build
 
-Yes, you can!
+# Preview the production build
+npm run preview
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📁 Project Structure
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
-"# Samyanix-deploy" 
+```
+-softyanix/
+├── backend/                 # Backend API
+│   ├── routes/             # API routes
+│   │   └── whatsapp.js    # WhatsApp integration
+│   ├── index.js           # Backend entry point
+│   └── server.js          # Express server setup
+├── src/                    # Frontend source code
+│   ├── components/        # React components
+│   │   ├── ui/           # shadcn/ui components
+│   │   ├── Footer.tsx
+│   │   ├── Layout.tsx
+│   │   ├── Navbar.tsx
+│   │   └── WhatsAppButton.tsx
+│   ├── pages/            # Page components
+│   │   ├── Home.tsx
+│   │   ├── Services.tsx
+│   │   ├── Projects.tsx
+│   │   ├── About.tsx
+│   │   ├── Contact.tsx
+│   │   └── NotFound.tsx
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions
+│   ├── assets/           # Images and static files
+│   ├── App.tsx           # Main app component
+│   └── main.tsx          # Application entry point
+├── public/               # Public static files
+└── package.json          # Project dependencies
+
+```
+
+## 🎨 Customization
+
+### Colors and Theming
+Edit the theme in `tailwind.config.ts` to customize colors, fonts, and other design tokens.
+
+### Components
+All UI components are in `src/components/ui/` and can be customized as needed.
+
+### Content
+Update page content in `src/pages/` directory.
+
+## 📧 Contact Form Setup
+
+The contact form sends data to the backend API. To enable email notifications:
+
+1. Configure your email service in the backend
+2. Update the API endpoint in `src/pages/Contact.tsx`
+3. Set up environment variables for email credentials
+
+## 🌐 Deployment
+
+### Frontend Deployment (Vercel/Netlify)
+```sh
+npm run build
+```
+Deploy the `dist` folder to your hosting provider.
+
+### Backend Deployment
+Deploy the `backend` folder to a Node.js hosting service (e.g., Heroku, Railway, DigitalOcean).
+
+## 📄 License
+
+This project is proprietary and confidential.
+
+## 🤝 Contributing
+
+For internal development only. Please contact the development team for any changes.
+
+## 📞 Support
+
+For support, email info@softyanix.com or contact us through our website.
+
+---
+
+**Built with ❤️ by Softyanix Team** 
