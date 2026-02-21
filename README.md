@@ -160,7 +160,7 @@ For internal development only. Please contact the development team for any chang
 
 ## 📞 Support
 
-For support, email info@softyanix.com or contact us through our website.
+For support, email infosamyanix@gmail.com or contact us through our website.
 
 ---
 
