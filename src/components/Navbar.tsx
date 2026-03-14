@@ -55,7 +55,7 @@ const Navbar = () => {
   const isActive = (path: string) => activeSection === path.replace("#", "");
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-2xl border-b border-border/40 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/60 shadow-sm">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-center h-16">

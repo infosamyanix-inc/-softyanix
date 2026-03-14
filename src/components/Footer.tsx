@@ -81,10 +81,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 mt-10 pt-8 text-center">
+        <div className="border-t border-primary-foreground/10 mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
           <p className="text-primary-foreground/60">
             © 2026 Softyanix. All rights reserved. Built with precision and modern technology.
           </p>
+          <a
+            href="/privacy-policy"
+            className="text-primary-foreground/60 hover:text-accent transition-colors text-sm whitespace-nowrap"
+          >
+            Privacy Policy
+          </a>
         </div>
       </div>
     </footer>
