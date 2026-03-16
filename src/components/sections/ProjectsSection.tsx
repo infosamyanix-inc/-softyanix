@@ -53,15 +53,11 @@ const ProjectsSection = () => {
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex gap-3">
                       <Button size="sm" variant="secondary" asChild className="rounded-full">
-                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                        <Link to={`/projects/${project.slug}`}>
                           <ExternalLink className="h-4 w-4 mr-2" /> View
-                        </a>
+                        </Link>
                       </Button>
-                      <Button size="sm" variant="secondary" asChild className="rounded-full">
-                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" /> Code
-                        </a>
-                      </Button>
+
                     </div>
                   </div>
                 </div>
@@ -145,9 +141,9 @@ const ProjectsSection = () => {
                 </div>
                 <div className="flex space-x-2">
                   <Button size="sm" variant="default" className="flex-1" asChild>
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                    <Link to={`/projects/${project.slug}`}>
                       <ExternalLink className="h-3 w-3 mr-1" /> Demo
-                    </a>
+                    </Link>
                   </Button>
                   <Button size="sm" variant="outline" asChild>
                     <Link to={`/projects/${project.slug}`}>Details</Link>

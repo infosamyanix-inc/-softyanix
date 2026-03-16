@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import { CheckCircle, Send, Star, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { contactServices, budgetRanges, timelineOptions, contactInfo, contactBenefits } from "@/data/contact";
+import { contactServices, serviceBudgetRanges, defaultBudgetRanges, timelineOptions, contactInfo, contactBenefits } from "@/data/contact";
 
 interface ContactSectionProps {
   onScrollTo: (id: string) => void;
@@ -27,8 +27,17 @@ const ContactSection = ({ onScrollTo }: ContactSectionProps) => {
     budget: "", timeline: "", message: "",
   });
 
+  const currentBudgetRanges = formData.service
+    ? (serviceBudgetRanges[formData.service] ?? defaultBudgetRanges)
+    : defaultBudgetRanges;
+
   const handleInputChange = (field: string, value: string) =>
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+      // Reset budget when service changes so stale value isn't kept
+      ...(field === "service" ? { budget: "" } : {}),
+    }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -109,11 +118,18 @@ const ContactSection = ({ onScrollTo }: ContactSectionProps) => {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label className="font-semibold">Budget Range</Label>
+                      <Label className="font-semibold">
+                        Budget Range
+                        {formData.service && (
+                          <span className="ml-2 text-xs font-normal text-accent">
+                            — {contactServices.find(s => s.value === formData.service)?.label}
+                          </span>
+                        )}
+                      </Label>
                       <Select value={formData.budget} onValueChange={(v) => handleInputChange("budget", v)}>
-                        <SelectTrigger className="border-border/50"><SelectValue placeholder="Select budget" /></SelectTrigger>
+                        <SelectTrigger className="border-border/50"><SelectValue placeholder={formData.service ? "Select your budget" : "Select a service first"} /></SelectTrigger>
                         <SelectContent>
-                          {budgetRanges.map((r) => <SelectItem key={r} value={r}>{r}</SelectItem>)}
+                          {currentBudgetRanges.map((r) => <SelectItem key={r} value={r}>{r}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>

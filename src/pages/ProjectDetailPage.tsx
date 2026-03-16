@@ -12,6 +12,16 @@ const ProjectDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-background pt-16">
+
+      {/* Fixed top-left back button */}
+      <a
+        href="/#projects"
+        className="fixed top-20 left-4 z-50 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-background/80 backdrop-blur-md border border-border shadow-lg hover:shadow-accent/20 text-foreground hover:text-accent hover:border-accent transition-all duration-300 group"
+      >
+        <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
+        Back to Projects
+      </a>
+
       {/* Hero image banner */}
       <div className="relative h-80 md:h-96 overflow-hidden">
         <img
@@ -22,11 +32,6 @@ const ProjectDetailPage = () => {
         <div className="absolute inset-0 bg-primary/70" />
         <div className="absolute inset-0 flex items-end pb-10 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto w-full">
-            <Link to="/#projects">
-              <Button variant="ghost" className="mb-4 text-primary-foreground/80 hover:text-primary-foreground gap-2 -ml-2">
-                <ArrowLeft className="h-4 w-4" /> Back to Projects
-              </Button>
-            </Link>
             <div className="flex items-center gap-3 mb-3">
               <Badge className="bg-accent text-accent-foreground">{project.category}</Badge>
               {project.featured && <Badge variant="outline" className="text-primary-foreground border-primary-foreground/40">Featured</Badge>}
