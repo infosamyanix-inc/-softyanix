@@ -31,13 +31,15 @@ const ContactSection = ({ onScrollTo }: ContactSectionProps) => {
     ? (serviceBudgetRanges[formData.service] ?? defaultBudgetRanges)
     : defaultBudgetRanges;
 
-  const handleInputChange = (field: string, value: string) =>
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-      // Reset budget when service changes so stale value isn't kept
-      ...(field === "service" ? { budget: "" } : {}),
-    }));
+  const handleInputChange = (field: string, value: string) => {
+    if (field === "service") {
+      // Auto-fill budget from the service's price when service changes
+      const autoBudget = (serviceBudgetRanges[value] ?? [])[0] ?? "";
+      setFormData((prev) => ({ ...prev, service: value, budget: autoBudget }));
+    } else {
+      setFormData((prev) => ({ ...prev, [field]: value }));
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -119,19 +121,27 @@ const ContactSection = ({ onScrollTo }: ContactSectionProps) => {
                     </div>
                     <div className="space-y-2">
                       <Label className="font-semibold">
-                        Budget Range
+                        Estimate Budget
                         {formData.service && (
-                          <span className="ml-2 text-xs font-normal text-accent">
-                            — {contactServices.find(s => s.value === formData.service)?.label}
-                          </span>
+                          <span className="ml-2 text-xs font-normal text-accent">— auto-filled</span>
                         )}
                       </Label>
-                      <Select value={formData.budget} onValueChange={(v) => handleInputChange("budget", v)}>
-                        <SelectTrigger className="border-border/50"><SelectValue placeholder={formData.service ? "Select your budget" : "Select a service first"} /></SelectTrigger>
-                        <SelectContent>
-                          {currentBudgetRanges.map((r) => <SelectItem key={r} value={r}>{r}</SelectItem>)}
-                        </SelectContent>
-                      </Select>
+                      {formData.budget ? (
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-md border border-accent/50 bg-accent/10 text-sm font-semibold text-accent">
+                          ✦ {formData.budget}
+                        </div>
+                      ) : (
+                        <Select value={formData.budget} onValueChange={(v) => handleInputChange("budget", v)}>
+                          <SelectTrigger className="border-border/50">
+                            <SelectValue placeholder="Select a service first" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {defaultBudgetRanges.map((r) => (
+                              <SelectItem key={r} value={r}>{r}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
                     </div>
                   </div>
 

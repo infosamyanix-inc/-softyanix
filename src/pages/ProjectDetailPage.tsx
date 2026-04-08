@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
 
 const ProjectDetailPage = () => {
@@ -66,14 +66,9 @@ const ProjectDetailPage = () => {
             <div className="p-6 bg-card border border-border/50 rounded-2xl sticky top-24 space-y-4">
               <h3 className="text-lg font-bold text-foreground">Project Links</h3>
               <Button className="w-full gap-2" asChild>
-                <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" /> Live Demo
-                </a>
-              </Button>
-              <Button variant="outline" className="w-full gap-2" asChild>
-                <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" /> View Code
-                </a>
+                <Link to={`/projects/${project.slug}`}>
+                  <ExternalLink className="h-4 w-4" /> View Details
+                </Link>
               </Button>
               <div className="pt-4 border-t border-border/50">
                 <p className="text-sm text-muted-foreground mb-3">Like what you see?</p>

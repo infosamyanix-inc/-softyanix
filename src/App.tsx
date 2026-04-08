@@ -10,6 +10,7 @@ import Layout from "./components/Layout";
 const HomePage         = lazy(() => import("./pages/HomePage"));
 const ServiceDetailPage = lazy(() => import("./pages/ServiceDetailPage"));
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
+const Projects         = lazy(() => import("./pages/Projects"));
 const PrivacyPolicy    = lazy(() => import("./pages/PrivacyPolicy"));
 
 const queryClient = new QueryClient({
@@ -37,7 +38,7 @@ const App = () => (
               <Route path="/"        element={<HomePage />} />
               <Route path="/home"    element={<Navigate to="/" replace />} />
               <Route path="/services" element={<HomePage />} />
-              <Route path="/projects" element={<HomePage />} />
+              <Route path="/projects" element={<Projects />} />
               <Route path="/about"   element={<HomePage />} />
               <Route path="/contact" element={<HomePage />} />
 
