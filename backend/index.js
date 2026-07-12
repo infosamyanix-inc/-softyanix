@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import nodemailer from "nodemailer";
+// nodemailer removed per request - submissions stored locally
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -17,33 +17,35 @@ app.post("/send-email", async (req, res) => {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    await transporter.sendMail({
-      from: `"${name}" <${email}>`,
-      to: process.env.RECEIVER_EMAIL,
-      subject: `New Contact – ${service}`,
-      text: `
-Name: ${name}
-Email: ${email}
-Company: ${company}
-Budget: ${budget}
-Timeline: ${timeline}
-
-Message:
-${message}
-      `,
-    });
-
-    res.json({ success: true });
+    // Save submission to backend/data/submissions.json
+    const fs = await import("fs");
+    const path = await import("path");
+    const submissionsFile = path.resolve(
+      process.cwd(),
+      "backend",
+      "data",
+      "submissions.json",
+    );
+    try {
+      const existing = fs.existsSync(submissionsFile)
+        ? JSON.parse(fs.readFileSync(submissionsFile, "utf8") || "[]")
+        : [];
+      existing.push({
+        name,
+        email,
+        company,
+        service,
+        budget,
+        timeline,
+        message,
+        receivedAt: new Date().toISOString(),
+      });
+      fs.writeFileSync(submissionsFile, JSON.stringify(existing, null, 2));
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to save submission" });
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to send email" });

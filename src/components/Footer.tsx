@@ -1,7 +1,30 @@
-import { Code, Zap, Mail, MapPin, Phone, Github, Linkedin, Twitter } from "lucide-react";
+import { useState } from "react";
+import { Github, Linkedin, Mail, MapPin, Phone, Send, Twitter } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
-  const handleNavClick = (sectionId: string) => {
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const { toast } = useToast();
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubscribing(true);
+
+    setTimeout(() => {
+      toast({
+        title: "Thanks for subscribing",
+        description: "We'll share updates, insights, and product news.",
+      });
+      setEmail("");
+      setIsSubscribing(false);
+    }, 500);
+  };
+
+  const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -9,82 +32,104 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground border-t border-primary-foreground/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="relative">
-                <Code className="h-8 w-8 text-primary-foreground" />
-                <Zap className="h-4 w-4 text-accent absolute -top-1 -right-1" />
+    <footer className="border-t border-border/60 bg-surface/95">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.9fr_0.9fr_1fr]">
+          <div className="space-y-5">
+            <div className="flex items-center gap-3">
+              <img src="/logo.svg" alt="Softyanix" className="h-10 w-10" />
+              <div>
+                <p className="text-lg font-semibold text-foreground">Softyanix</p>
+                <p className="text-sm text-muted-foreground">Digital product studio</p>
               </div>
-              <span className="text-xl font-bold">
-                Softy<span className="text-accent">anix</span>
-              </span>
             </div>
-            <p className="text-primary-foreground/80 mb-6 max-w-md leading-relaxed">
-              Transforming ideas into digital reality with cutting-edge MERN stack development, 
-              AI chatbots, mobile apps, and stunning UI/UX design.
+            <p className="max-w-md text-sm leading-6 text-muted-foreground">
+              We design and build polished web platforms, mobile products, and AI-powered experiences with a clear delivery process.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="h-9 w-9 inline-flex items-center justify-center rounded-full border border-primary-foreground/20 text-primary-foreground/70 hover:text-accent hover:border-accent transition-colors">
+            <div className="flex items-center gap-3">
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:border-accent hover:text-accent">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="#" className="h-9 w-9 inline-flex items-center justify-center rounded-full border border-primary-foreground/20 text-primary-foreground/70 hover:text-accent hover:border-accent transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:border-accent hover:text-accent">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="h-9 w-9 inline-flex items-center justify-center rounded-full border border-primary-foreground/20 text-primary-foreground/70 hover:text-accent hover:border-accent transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="rounded-full border border-border/60 p-2 text-muted-foreground transition-colors hover:border-accent hover:text-accent">
                 <Twitter className="h-5 w-5" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {["Home", "Services", "Projects", "About", "Contact"].map((item) => (
-                <li key={item}>
-                  <a 
-                    href={`#${item.toLowerCase()}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(item.toLowerCase());
-                    }}
-                    className="text-primary-foreground/80 hover:text-accent transition-colors cursor-pointer"
-                  >
-                    {item}
-                  </a>
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Company</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li><button type="button" onClick={() => handleSectionClick("home")} className="transition-colors hover:text-foreground">Home</button></li>
+              <li><button type="button" onClick={() => handleSectionClick("services")} className="transition-colors hover:text-foreground">Services</button></li>
+              <li><button type="button" onClick={() => handleSectionClick("about")} className="transition-colors hover:text-foreground">About</button></li>
+              <li><button type="button" onClick={() => handleSectionClick("contact")} className="transition-colors hover:text-foreground">Contact</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Services</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              {["Web Development", "Mobile Apps", "AI Chatbots", "UI/UX Design", "Cloud Solutions"].map((service) => (
+                <li key={service}>
+                  <button type="button" onClick={() => handleSectionClick("services")} className="transition-colors hover:text-foreground">
+                    {service}
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-accent" />
-                <span className="text-primary-foreground/80">infosamyanix@gmail.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-accent" />
-                <span className="text-primary-foreground/80">+92 (315) 065-7943</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-4 w-4 text-accent" />
-                <span className="text-primary-foreground/80">Karachi, Sindh, Pakistan</span>
+          <div className="space-y-5">
+            <div>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Contact</h4>
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <div className="flex items-start gap-3">
+                  <Mail className="mt-0.5 h-4 w-4 text-accent" />
+                  <a href="mailto:infosamyanix@gmail.com" className="transition-colors hover:text-foreground">infosamyanix@gmail.com</a>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone className="mt-0.5 h-4 w-4 text-accent" />
+                  <a href="tel:+923150657943" className="transition-colors hover:text-foreground">+92 (315) 065-7943</a>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-4 w-4 text-accent" />
+                  <span>Karachi, Sindh, Pakistan</span>
+                </div>
               </div>
             </div>
+
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3 rounded-2xl border border-border/60 bg-background/70 p-4">
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Subscribe</h4>
+                <p className="mt-2 text-sm text-muted-foreground">Get updates on launches, insights, and service improvements.</p>
+              </div>
+              <div className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="border-border/60 bg-background"
+                />
+                <Button type="submit" disabled={isSubscribing} className="shrink-0">
+                  {isSubscribing ? "..." : <Send className="h-4 w-4" />}
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 mt-10 pt-8 text-center">
-          <p className="text-primary-foreground/60">
-            © 2026 Softyanix. All rights reserved. Built with precision and modern technology.
-          </p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-border/60 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} Softyanix. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="#" className="transition-colors hover:text-foreground">Privacy</a>
+            <a href="#" className="transition-colors hover:text-foreground">Terms</a>
+            <a href="#" className="transition-colors hover:text-foreground">Sitemap</a>
+          </div>
         </div>
       </div>
     </footer>

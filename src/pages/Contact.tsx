@@ -377,7 +377,7 @@ const Contact = () => {
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-accent" />
                   <span className="text-sm text-foreground">
-                    50+ successful projects
+                    50+ successful launches
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -431,7 +431,7 @@ const Contact = () => {
               {
                 question: "How long does development take?",
                 answer:
-                  "Timeline depends on project scope. Simple projects: 2-4 weeks, Complex applications: 2-6 months.",
+                  "Timeline depends on scope. Simple builds: 2-4 weeks, complex applications: 2-6 months.",
               },
               {
                 question: "Do you provide ongoing support?",

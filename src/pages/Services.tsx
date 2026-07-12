@@ -31,7 +31,6 @@ const Services = () => {
         "Authentication & Security",
         "Real-time Features"
       ],
-      pricing: "Starting from $2,999",
       timeline: "4-12 weeks",
       popular: true
     },
@@ -48,7 +47,6 @@ const Services = () => {
         "24/7 Customer Support",
         "Custom Training Data"
       ],
-      pricing: "Starting from $1,999",
       timeline: "3-8 weeks"
     },
     {
@@ -64,7 +62,6 @@ const Services = () => {
         "App Store Deployment",
         "Push Notifications"
       ],
-      pricing: "Starting from $4,999",
       timeline: "6-16 weeks"
     },
     {
@@ -80,7 +77,6 @@ const Services = () => {
         "Responsive Design",
         "Design System Creation"
       ],
-      pricing: "Starting from $1,499",
       timeline: "2-6 weeks"
     },
     {
@@ -96,7 +92,6 @@ const Services = () => {
         "API Documentation",
         "Security Implementation"
       ],
-      pricing: "Starting from $999",
       timeline: "2-4 weeks"
     },
     {
@@ -112,7 +107,6 @@ const Services = () => {
         "Auto-scaling Solutions",
         "Security Best Practices"
       ],
-      pricing: "Starting from $799/month",
       timeline: "1-3 weeks"
     }
   ];
@@ -145,10 +139,13 @@ const Services = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-accent mb-6 animate-fade-in-up">
+            Services Overview
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-fade-in-up">
             Our Services
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.08s" }}>
             From concept to deployment, we provide end-to-end digital solutions 
             that drive growth and innovation for your business.
           </p>
@@ -162,10 +159,11 @@ const Services = () => {
             {services.map((service, index) => (
               <Card 
                 key={service.title}
-                className={`relative group hover:shadow-accent transition-all duration-300 hover:-translate-y-1 animate-fade-in ${
+                data-animate
+                style={{ ['--delay' as any]: `${index * 80}ms` }}
+                className={`relative group hover:shadow-accent transition-all duration-300 hover:-translate-y-1 ${
                   service.popular ? 'ring-2 ring-accent ring-offset-2' : ''
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {service.popular && (
                   <Badge className="absolute -top-2 left-4 bg-accent text-accent-foreground">
@@ -197,8 +195,8 @@ const Services = () => {
                   
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <p className="text-lg font-semibold text-accent">{service.pricing}</p>
-                      <p className="text-sm text-muted-foreground">Timeline: {service.timeline}</p>
+                      <p className="text-sm uppercase tracking-[0.18em] text-muted-foreground">Timeline</p>
+                      <p className="text-lg font-semibold text-accent">{service.timeline}</p>
                     </div>
                   </div>
                   
@@ -267,7 +265,7 @@ const Services = () => {
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-              <Link to="/projects">View Our Work</Link>
+              <Link to="/contact">Get Started</Link>
             </Button>
           </div>
         </div>

@@ -1,28 +1,50 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   const navItems = [
-    { name: "Home", path: "#home" },
-    { name: "Services", path: "#services" },
-    { name: "Projects", path: "#projects" },
-    { name: "About", path: "#about" },
-    { name: "Contact", path: "#contact" },
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "About", path: "/#about" },
+    { name: "Contact", path: "/#contact" },
   ];
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavClick = (path: string) => {
     setIsOpen(false);
+
+    // Route navigation (starts with '/')
+    if (path.startsWith("/")) {
+      const [route, hash] = path.split("#");
+      if (location.pathname !== route) navigate(route);
+
+      if (hash) {
+        // Wait for the route to mount, then scroll to anchor
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+          setActiveSection(hash);
+        }, 120);
+      } else {
+        // Clear active section when navigating to a top-level route
+        setActiveSection(route === "/" ? "home" : route.replace("/", ""));
+      }
+
+      return;
+    }
+
+    // Hash-only (in-page) navigation
     const sectionId = path.replace("#", "");
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -60,14 +82,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-accent/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Code className="h-8 w-8 text-primary transition-all duration-300 group-hover:text-accent group-hover:scale-110 relative" />
-              <Zap className="h-4 w-4 text-accent absolute -top-1 -right-1 group-hover:animate-glow" />
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent transition-all duration-300">
-              Softy<span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">anix</span>
+          <Link to="/" className="flex items-center gap-3 group">
+            <img
+              src="/logo.svg"
+              alt="Softyanix Logo"
+              className="h-9 w-9 transition-transform duration-300 group-hover:scale-[1.03]"
+            />
+            <span className="text-xl font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+              Softyanix
             </span>
           </Link>
 
@@ -81,7 +103,8 @@ const Navbar = () => {
                   e.preventDefault();
                   handleNavClick(item.path);
                 }}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer group ${ isActive(item.path)
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer group ${
+                  isActive(item.path)
                     ? "text-accent bg-accent/15"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/8"
                 }`}
@@ -103,7 +126,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-accent transition-colors"

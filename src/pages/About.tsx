@@ -19,7 +19,7 @@ import {
 
 const About = () => {
   const stats = [
-    { number: "50+", label: "Projects Delivered", icon: Award },
+    { number: "50+", label: "Solutions Delivered", icon: Award },
     { number: "98%", label: "Client Satisfaction", icon: Heart },
     { number: "24/7", label: "Support Available", icon: Users },
     { number: "3+", label: "Years Experience", icon: TrendingUp }
@@ -57,29 +57,6 @@ const About = () => {
     }
   ];
 
-  const timeline = [
-    {
-      year: "2021",
-      title: "The Beginning",
-      description: "Started as a solo freelancer specializing in React development."
-    },
-    {
-      year: "2022", 
-      title: "Expanding Horizons",
-      description: "Added AI/ML and mobile app development to our service offerings."
-    },
-    {
-      year: "2023",
-      title: "Growing Team",
-      description: "Formed strategic partnerships and expanded our capabilities."
-    },
-    {
-      year: "2024",
-      title: "Softyanix Today",
-      description: "A trusted partner for startups and enterprises worldwide."
-    }
-  ];
-
   return (
     <div className="py-20">
       {/* Hero Section */}
@@ -102,7 +79,7 @@ const About = () => {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/projects">View Our Work</Link>
+                  <Link to="/services">View Services</Link>
                 </Button>
               </div>
             </div>
@@ -158,12 +135,12 @@ const About = () => {
         </div>
       </section>
 
-      {/* Skills & Expertise */}
+      {/* Core Capabilities */}
       <section className="py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Expertise
+              Core Capabilities
             </h2>
             <p className="text-xl text-muted-foreground">
               Years of experience across modern technologies and frameworks
@@ -228,42 +205,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Company Timeline */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Journey
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              From startup to trusted software partner
-            </p>
-          </div>
-          
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-accent/20" />
-            {timeline.map((item, index) => (
-              <div 
-                key={item.year} 
-                className={`relative flex items-center mb-12 animate-fade-in ${
-                  index % 2 === 0 ? 'justify-start' : 'justify-end'
-                }`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <Card className={`w-full md:w-1/2 p-6 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
-                  <CardContent className="p-0">
-                    <Badge className="mb-3 bg-accent text-accent-foreground">{item.year}</Badge>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-background" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -271,8 +212,8 @@ const About = () => {
             Ready to Work Together?
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and see how we can help bring your vision to life 
-            with our expertise and passion for innovation.
+              Let's discuss your project and see how we can help bring your vision to life
+              with a focused approach to innovation and dependable delivery.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" variant="secondary" asChild>

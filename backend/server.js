@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import whatsappRoute from "./routes/whatsapp.js";
+import contactRoute from "./routes/contact.js";
 
 // Load environment variables
 dotenv.config();
@@ -44,7 +44,7 @@ app.get("/health", (req, res) => {
 });
 
 // API Routes
-app.use("/api/whatsapp", whatsappRoute);
+app.use("/api/contact", contactRoute);
 
 // 404 handler
 app.use((req, res) => {

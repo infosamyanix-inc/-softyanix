@@ -163,27 +163,6 @@
 
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-
-  .dark {
-    /* Dark mode - Software House Theme */
-    --background: 222 84% 8%;
-    --foreground: 210 40% 98%;
-    --card: 222 84% 12%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 84% 12%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 142 76% 36%;
-    --primary-foreground: 222 84% 8%;
-    --secondary: 217 32% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 142 76% 36%;
-    --accent-foreground: 222 84% 8%;
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 142 76% 36%;
-  }
 }
 
 /* Component Utilities */
@@ -259,6 +238,24 @@
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
     opacity: 0;
+  }
+
+  /* Scroll-triggered utility (used with data-animate) */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(18px) scale(0.995);
+    transition: opacity 700ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1);
+    will-change: opacity, transform;
+  }
+
+  [data-animate].visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Support per-element delay via CSS variable */
+  [data-animate] {
+    transition-delay: var(--delay, 0ms);
   }
 
   .animate-fade-in-down {
@@ -366,6 +363,52 @@
     background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
                 linear-gradient(135deg, hsl(var(--accent) / 0.3), hsl(var(--primary) / 0.3)) border-box;
     border: 1px solid transparent;
+  }
+
+  /* Animated Background Blobs for Capabilities Section */
+  .animated-bg {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+    overflow: hidden;
+  }
+
+  .bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.65;
+    transform: translate3d(0,0,0);
+    will-change: transform, opacity;
+  }
+
+  .blob-1 {
+    width: 520px;
+    height: 520px;
+    left: -10%;
+    top: -20%;
+    background: radial-gradient(circle at 30% 30%, rgba(34,197,94,0.9), rgba(34,197,94,0.6) 30%, transparent 60%);
+    animation: blobMove1 12s ease-in-out infinite alternate;
+  }
+
+  .blob-2 {
+    width: 420px;
+    height: 420px;
+    right: -8%;
+    bottom: -18%;
+    background: radial-gradient(circle at 70% 70%, rgba(59,130,246,0.9), rgba(59,130,246,0.55) 30%, transparent 60%);
+    animation: blobMove2 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes blobMove1 {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate3d(30px, -20px, 0) scale(1.06); opacity: 0.9; }
+    100% { transform: translate3d(0, -40px, 0) scale(1); opacity: 0.6; }
+  }
+
+  @keyframes blobMove2 {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate3d(-30px, 20px, 0) scale(1.05); opacity: 0.85; }
+    100% { transform: translate3d(0, 40px, 0) scale(1); opacity: 0.6; }
   }
 
   /* Enhanced Typography Hierarchy */
