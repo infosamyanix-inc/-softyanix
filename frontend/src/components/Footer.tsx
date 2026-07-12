@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
-import favicon from "@/assets/favicon.png";
+import favicon from "../assets/favicon.png";
 
 const Footer = () => {
   const [email, setEmail] = useState("");

@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
-import favicon from "@/assets/favicon.png";
+import favicon from "../assets/favicon.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

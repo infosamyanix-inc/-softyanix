@@ -1,102 +1,81 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
-import {
-  createCompanyEmailTemplate,
-  createConfirmationEmailTemplate,
-} from "../utils/emailTemplates.js";
-import { validateContactForm } from "../utils/validation.js";
-import { sendSuccessResponse, sendErrorResponse } from "../utils/responses.js";
+import nodemailer from "nodemailer";
 
 const router = express.Router();
+const submissionsFile = path.resolve(process.cwd(), "backend", "data", "submissions.json");
 
-// Submissions storage path
-const submissionsFile = path.resolve(
-  process.cwd(),
-  "backend",
-  "data",
-  "submissions.json",
-);
-
-// Ensure data directory exists
+// Ensure directory and file exists
 const dataDir = path.dirname(submissionsFile);
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-if (!fs.existsSync(submissionsFile))
-  fs.writeFileSync(submissionsFile, JSON.stringify([]));
+if (!fs.existsSync(submissionsFile)) fs.writeFileSync(submissionsFile, "[]");
 
-/**
- * @route   POST /api/contact/send-email
- * @desc    Send contact form email
- * @access  Public
- */
-router.post("/send-email", async (req, res) => {
-  try {
-    const formData = req.body;
-
-    // Validate form data
-    const validation = validateContactForm(formData);
-    if (!validation.isValid) {
-      return sendErrorResponse(res, validation.error, 400);
-    }
-
-    const { name, email } = formData;
-
-    // Persist submission to a local JSON file (no external email provider)
-    const submissions = JSON.parse(
-      fs.readFileSync(submissionsFile, "utf8") || "[]",
-    );
-    const record = {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-      name,
-      email,
-      service: formData.service,
-      company: formData.company || null,
-      budget: formData.budget || null,
-      timeline: formData.timeline || null,
-      message: formData.message,
-      ip: req.ip,
-      receivedAt: new Date().toISOString(),
-    };
-
-    submissions.push(record);
-    fs.writeFileSync(submissionsFile, JSON.stringify(submissions, null, 2));
-
-    // Log successful submission
-    console.log("✅ Contact form stored:", {
-      id: record.id,
-      name,
-      email,
-      service: record.service,
-    });
-
-    sendSuccessResponse(
-      res,
-      "Message received. We'll review and follow up via email.",
-      {
-        id: record.id,
-        name,
-        email,
-        submittedAt: record.receivedAt,
-      },
-    );
-  } catch (error) {
-    console.error("❌ Contact form error:", error);
-    sendErrorResponse(
-      res,
-      "Failed to send message. Please try again or contact us directly.",
-      500,
-      error.message,
-    );
+// Configure SMTP transport using Gmail App Passwords from environment config
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.SMTP_USER || "muhammadyaqoobwako@gmail.com",
+    pass: process.env.SMTP_PASS || "odsf ybnl tmnp yyrg"
   }
 });
 
-/**
- * @route   GET /api/contact/test
- * @desc    Test contact form endpoint
- * @access  Public
- */
-router.get("/test", (req, res) => {
-  sendSuccessResponse(res, "Contact endpoint is working");
+router.post("/send-email", async (req, res) => {
+  try {
+    const { name, email, service, company, budget, timeline, message } = req.body;
+
+    if (!name || !email || !service || !message) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // 1. Save to local JSON database for robustness
+    const submissions = JSON.parse(fs.readFileSync(submissionsFile, "utf8") || "[]");
+    const record = {
+      id: Date.now().toString(),
+      name,
+      email,
+      service,
+      company: company || null,
+      budget: budget || null,
+      timeline: timeline || null,
+      message,
+      receivedAt: new Date().toISOString(),
+    };
+    submissions.push(record);
+    fs.writeFileSync(submissionsFile, JSON.stringify(submissions, null, 2));
+
+    // 2. Format and send the notification email to infosamyanix@gmail.com
+    const emailHtml = `
+      <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+        <h2 style="color: #22c55e;">New Project Inquiry</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Company:</strong> ${company || "N/A"}</p>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Budget:</strong> ${budget || "N/A"}</p>
+        <p><strong>Timeline:</strong> ${timeline || "N/A"}</p>
+        <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #22c55e; margin-top: 15px;">
+          <p style="margin: 0; font-style: italic;">"${message}"</p>
+        </div>
+        <p style="font-size: 11px; color: #888; margin-top: 25px;">Submitted via Softyanix contact form on ${record.receivedAt}</p>
+      </div>
+    `;
+
+    await transporter.sendMail({
+      from: `"Softyanix Site" <${process.env.SMTP_USER || "muhammadyaqoobwako@gmail.com"}>`,
+      to: "infosamyanix@gmail.com",
+      subject: `New Inquiry from ${name} - ${service}`,
+      html: emailHtml
+    });
+
+    console.log(`Email successfully dispatched for ${name} (${email})`);
+    res.json({ success: true, message: "Submission processed and email sent successfully" });
+  } catch (error) {
+    console.error("Submission processing error:", error);
+    res.status(500).json({ error: "Failed to process project inquiry" });
+  }
 });
+
+router.get("/test", (req, res) => res.json({ status: "ok" }));
 
 export default router;
