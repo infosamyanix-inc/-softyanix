@@ -50,7 +50,7 @@ export const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    info: "infosamyanix@gmail.com",
+    info: "infosoftyanix@gmail.com",
     description: "Get a response within 24 hours",
   },
   {

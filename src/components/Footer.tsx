@@ -90,7 +90,7 @@ const Footer = () => {
               <div className="space-y-3 text-sm text-muted-foreground">
                 <div className="flex items-start gap-3">
                   <Mail className="mt-0.5 h-4 w-4 text-accent" />
-                  <a href="mailto:infosamyanix@gmail.com" className="transition-colors hover:text-foreground">infosamyanix@gmail.com</a>
+                  <a href="mailto:infosoftyanix@gmail.com" className="transition-colors hover:text-foreground">infosoftyanix@gmail.com</a>
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 text-accent" />

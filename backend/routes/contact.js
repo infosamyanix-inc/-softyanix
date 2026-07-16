@@ -63,7 +63,7 @@ router.post("/send-email", async (req, res) => {
 
     await transporter.sendMail({
       from: `"Softyanix Site" <${process.env.SMTP_USER || "muhammadyaqoobwako@gmail.com"}>`,
-      to: "infosamyanix@gmail.com",
+      to: "infosoftyanix@gmail.com",
       subject: `New Inquiry from ${name} - ${service}`,
       html: emailHtml
     });

@@ -113,7 +113,7 @@ const HomePage = () => {
   const timelineOptions = ["ASAP", "1-2 months", "3-6 months", "6+ months", "Just exploring"];
 
   const contactInfo = [
-    { icon: Mail, title: "Email", value: "infosamyanix@gmail.com" },
+    { icon: Mail, title: "Email", value: "infosoftyanix@gmail.com" },
     { icon: Phone, title: "Phone", value: "+92 (315) 065-7943" },
     { icon: MapPin, title: "Location", value: "Karachi, Sindh, Pakistan" },
   ];

@@ -154,7 +154,7 @@ const PrivacyPolicy = () => {
             <p className="text-muted-foreground mt-4">
               To exercise any of these rights, please contact us at{" "}
               <a href="mailto:infosamyanix@gmail.com" className="text-accent hover:underline font-medium">
-                infosamyanix@gmail.com
+                infosoftyanix@gmail.com
               </a>.
             </p>
           </section>
@@ -189,7 +189,7 @@ const PrivacyPolicy = () => {
             </p>
             <div className="mt-4 p-6 bg-muted/40 rounded-xl border border-border space-y-2 text-muted-foreground">
               <p><strong className="text-foreground">Softyanix</strong></p>
-              <p>📧 <a href="mailto:infosamyanix@gmail.com" className="text-accent hover:underline">infosamyanix@gmail.com</a></p>
+              <p>📧 <a href="mailto:infosoftyanix@gmail.com" className="text-accent hover:underline">infosoftyanix@gmail.com</a></p>
               <p>📞 +92 (315) 065-7943</p>
               <p>📍 Karachi, Sindh, Pakistan</p>
             </div>
