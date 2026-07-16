@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 
 import WhatsAppButton from "@/components/WhatsAppButton";
-import BudgetEstimator from "@/components/BudgetEstimator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -544,22 +543,6 @@ const HomePage = () => {
             </Card>
 
             <div className="space-y-6" data-animate>
-              {/* Budget Estimator Widget */}
-              <BudgetEstimator
-                onApplyEstimator={({ service, budget, message }) => {
-                  setFormData((prev) => ({
-                    ...prev,
-                    service,
-                    budget,
-                    message: `${prev.message}\n\n${message}`.trim()
-                  }));
-                  toast({
-                    title: "Applied Scope",
-                    description: "Estimated budget and suggested domain values are pre-filled in your form."
-                  });
-                }}
-              />
-
               <Card className="shadow-medium bg-card/95 border-border/50">
                 <CardHeader>
                   <CardTitle className="text-xl font-bold text-foreground">Contact</CardTitle>

@@ -70,5 +70,5 @@ export const apiClient = new ApiClient(API_CONFIG.baseUrl, API_CONFIG.timeout);
  * WhatsApp API functions
  */
 export const whatsappApi = {
-  getInfo: () => apiClient.get(API_CONFIG.endpoints.whatsappInfo),
+  getInfo: () => apiClient.get('/api/whatsapp/info'),
 };
