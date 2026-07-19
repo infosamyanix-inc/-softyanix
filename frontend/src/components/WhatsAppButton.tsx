@@ -18,7 +18,8 @@ class WhatsAppLinkService implements LinkService {
 }
 
 // Instantiate Link builder service (can be swapped/injected later if needed)
-const linkService = new WhatsAppLinkService("921568358860");
+// Use E.164 without the leading plus for wa.me links (country code + local number)
+const linkService = new WhatsAppLinkService("923156835880");
 const MESSAGE = "Hello Softyanix, I want to discuss a project.";
 
 const WhatsAppButton: React.FC = () => {

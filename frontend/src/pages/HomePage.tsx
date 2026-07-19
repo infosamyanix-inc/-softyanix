@@ -113,7 +113,7 @@ const HomePage = () => {
 
   const contactInfo = [
     { icon: Mail, title: "Email", value: "infosoftyanix@gmail.com" },
-    { icon: Phone, title: "Phone", value: "+92 (315) 065-7943" },
+    { icon: Phone, title: "Phone", value: "+92 3156835880" },
     { icon: MapPin, title: "Location", value: "Karachi, Sindh, Pakistan" },
   ];
 

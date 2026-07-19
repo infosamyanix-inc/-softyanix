@@ -89,7 +89,7 @@ cd backend && npm run dev
 ## Contact
 
 - **Email**: contact@softyanix.com
-- **WhatsApp**: [+92 340 257 3560](https://wa.me/923402573560)
+- **WhatsApp**: [+92 3156835880](https://wa.me/923156835880)
 - **GitHub**: [infosamyanix-inc](https://github.com/infosamyanix-inc)
 
 ---
