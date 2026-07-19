@@ -18,7 +18,7 @@ class WhatsAppLinkService implements LinkService {
 }
 
 // Instantiate Link builder service (can be swapped/injected later if needed)
-const linkService = new WhatsAppLinkService("923150657943");
+const linkService = new WhatsAppLinkService("921568358860");
 const MESSAGE = "Hello Softyanix, I want to discuss a project.";
 
 const WhatsAppButton: React.FC = () => {

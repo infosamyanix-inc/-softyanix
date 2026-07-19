@@ -7,7 +7,7 @@ export const APP_CONFIG = {
   tagline: 'Digital Solutions Agency',
   description: 'Modern digital solutions agency specializing in MERN stack development, AI chatbots, mobile apps, and UI/UX design',
   email: import.meta.env.VITE_EMAIL || 'infosoftyanix@gmail.com',
-  phone: import.meta.env.VITE_PHONE || '+92 340 257 3560',
+  phone: import.meta.env.VITE_PHONE || '+92 346835880',
   address: 'Lahore, Pakistan',
   social: {
     github: import.meta.env.VITE_GITHUB_URL || 'https://github.com/infosamyanix-inc',
