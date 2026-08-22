@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState, type CSSProperties } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
@@ -11,7 +11,6 @@ import {
   Mail,
   MapPin,
   Palette,
-  Phone,
   Rocket,
   Send,
   Smartphone,
@@ -19,7 +18,6 @@ import {
   Zap,
 } from "lucide-react";
 
-import WhatsAppButton from "@/components/WhatsAppButton";
 import BudgetEstimator from "@/components/BudgetEstimator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -114,8 +112,7 @@ const HomePage = () => {
 
   const contactInfo = [
     { icon: Mail, title: "Email", value: "infosamyanix@gmail.com" },
-    { icon: Phone, title: "Phone", value: "+92 (315) 065-7943" },
-    { icon: MapPin, title: "Location", value: "Karachi, Sindh, Pakistan" },
+    { icon: MapPin, title: "Location", value: "Abu Dhabi, Dubai · Apt 404, Opal Tower" },
   ];
 
   const handleInputChange = (field: string, value: string) => {
@@ -283,7 +280,6 @@ const HomePage = () => {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
-        <WhatsAppButton />
       </section>
 
       <section className="py-16">
@@ -295,7 +291,7 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {simpleToAdvanced.map((item, index) => (
-              <Card key={item.title} data-animate className="border-border/60 bg-card/95 shadow-soft transition-all duration-300 hover:shadow-medium" style={{ ['--delay' as any]: `${index * 80}ms` }}>
+              <Card key={item.title} data-animate className="border-border/60 bg-card/95 shadow-soft transition-all duration-300 hover:shadow-medium" style={{ "--delay": `${index * 80}ms` } as CSSProperties}>
                 <CardHeader>
                   <CardTitle>{item.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
@@ -331,7 +327,7 @@ const HomePage = () => {
                   onClick={() => navigate("/services")}
                   data-animate
                   className="overflow-hidden border-border/60 bg-card/95 shadow-soft transition-all duration-300 hover:shadow-medium hover:-translate-y-1 cursor-pointer select-none group"
-                  style={{ ['--delay' as any]: `${index * 80}ms` }}
+                  style={{ "--delay": `${index * 80}ms` } as CSSProperties}
                 >
                   <div className="aspect-[4/3] overflow-hidden relative">
                     <img src={service.image} alt={service.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -527,7 +523,7 @@ const HomePage = () => {
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                        Direct Slack/WhatsApp onboarding channel
+                        Direct Slack onboarding channel
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="h-1.5 w-1.5 rounded-full bg-accent" />

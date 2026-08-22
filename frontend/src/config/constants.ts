@@ -7,8 +7,7 @@ export const APP_CONFIG = {
   tagline: 'Digital Solutions Agency',
   description: 'Modern digital solutions agency specializing in MERN stack development, AI chatbots, mobile apps, and UI/UX design',
   email: import.meta.env.VITE_EMAIL || 'contact@softyanix.com',
-  phone: import.meta.env.VITE_PHONE || '+92 340 257 3560',
-  address: 'Lahore, Pakistan',
+  address: 'Abu Dhabi, Dubai · Apt 404, Opal Tower',
   social: {
     github: import.meta.env.VITE_GITHUB_URL || 'https://github.com/infosamyanix-inc',
     linkedin: import.meta.env.VITE_LINKEDIN_URL || 'https://linkedin.com/company/softyanix',

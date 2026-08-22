@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Github, Linkedin, Mail, MapPin, Phone, Send, Twitter } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Github, Linkedin, Mail, MapPin, Send, Twitter } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -66,6 +67,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><button type="button" onClick={() => handleSectionClick("home")} className="transition-colors hover:text-foreground">Home</button></li>
               <li><button type="button" onClick={() => handleSectionClick("services")} className="transition-colors hover:text-foreground">Services</button></li>
+              <li><Link to="/careers" className="transition-colors hover:text-foreground">Careers</Link></li>
               <li><button type="button" onClick={() => handleSectionClick("about")} className="transition-colors hover:text-foreground">About</button></li>
               <li><button type="button" onClick={() => handleSectionClick("contact")} className="transition-colors hover:text-foreground">Contact</button></li>
             </ul>
@@ -93,12 +95,8 @@ const Footer = () => {
                   <a href="mailto:infosamyanix@gmail.com" className="transition-colors hover:text-foreground">infosamyanix@gmail.com</a>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Phone className="mt-0.5 h-4 w-4 text-accent" />
-                  <a href="tel:+923150657943" className="transition-colors hover:text-foreground">+92 (315) 065-7943</a>
-                </div>
-                <div className="flex items-start gap-3">
                   <MapPin className="mt-0.5 h-4 w-4 text-accent" />
-                  <span>Karachi, Sindh, Pakistan</span>
+                  <span>Abu Dhabi, Dubai · Apt 404, Opal Tower</span>
                 </div>
               </div>
             </div>

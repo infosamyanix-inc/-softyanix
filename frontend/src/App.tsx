@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,10 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
-
-// Lazy load pages for better performance
-const HomePage = lazy(() => import("./pages/HomePage"));
-const ServicesPage = lazy(() => import("./pages/Services"));
+import HomePage from "./pages/HomePage";
+import ServicesPage from "./pages/Services";
+import CareersPage from "./pages/Careers";
 
 // Query client configuration
 const queryClient = new QueryClient({
@@ -51,6 +50,7 @@ const App = () => (
               <Route path="/" element={<HomePage />} />
               <Route path="/home" element={<Navigate to="/" replace />} />
               <Route path="/services" element={<ServicesPage />} />
+              <Route path="/careers" element={<CareersPage />} />
               <Route path="/about" element={<HomePage />} />
               <Route path="/contact" element={<HomePage />} />
               <Route path="*" element={<Navigate to="/" replace />} />

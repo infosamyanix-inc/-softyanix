@@ -55,14 +55,9 @@ export interface Testimonial {
   image?: string;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   status: 'success' | 'error';
   message?: string;
   data?: T;
 }
 
-export interface WhatsAppInfo {
-  available: boolean;
-  businessHours: string;
-  responseTime: string;
-}

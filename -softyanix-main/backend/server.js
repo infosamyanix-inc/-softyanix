@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import whatsappRoute from "./routes/whatsapp.js";
 
 // Load environment variables
 dotenv.config();
@@ -42,9 +41,6 @@ app.get("/health", (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
-
-// API Routes
-app.use("/api/whatsapp", whatsappRoute);
 
 // 404 handler
 app.use((req, res) => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
@@ -175,7 +175,7 @@ const Services = () => {
                   key={service.title}
                   onClick={() => toggleExpand(service.title)}
                   data-animate
-                  style={{ ['--delay' as any]: `${index * 80}ms` }}
+                  style={{ "--delay": `${index * 80}ms` } as CSSProperties}
                   className={`relative flex flex-col justify-between rounded-3xl border border-border/50 bg-card p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-pointer select-none ${
                     service.popular ? 'ring-1 ring-accent/30 bg-[linear-gradient(to_bottom,hsl(var(--card)),hsl(var(--accent)/0.02))]' : ''
                   }`}
@@ -247,7 +247,7 @@ const Services = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {processSteps.map((step, index) => (
-              <div key={step.title} data-animate style={{ ['--delay' as any]: `${index * 80}ms` }} className="relative rounded-2xl bg-card border border-border/40 p-6 space-y-4">
+              <div key={step.title} data-animate style={{ "--delay": `${index * 80}ms` } as CSSProperties} className="relative rounded-2xl bg-card border border-border/40 p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-xl bg-accent/5 border border-accent/15 flex items-center justify-center">
                     <step.icon className="h-6 w-6 text-accent" />

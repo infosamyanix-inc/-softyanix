@@ -4,7 +4,7 @@ import { useEffect } from "react";
  * Scroll Reveal Hook implementing SRP (Single Responsibility Principle).
  * Responsibility: Track DOM mount updates and apply dynamic fade-in intersections on elements.
  */
-export const useScrollReveal = (dependency?: any) => {
+export const useScrollReveal = (dependency?: unknown) => {
   useEffect(() => {
     const selector = "[data-animate]";
     const items = document.querySelectorAll(selector);

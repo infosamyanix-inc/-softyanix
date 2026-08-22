@@ -5,16 +5,17 @@ import { Menu, X } from "lucide-react";
 
 import favicon from "../assets/favicon.png";
 
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services" },
+  { name: "Careers", path: "/careers" },
+  { name: "About", path: "/#about" },
+  { name: "Contact", path: "/#contact" },
+];
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "About", path: "/#about" },
-    { name: "Contact", path: "/#contact" },
-  ];
 
   const navigate = useNavigate();
   const location = useLocation();

@@ -56,7 +56,7 @@ class ApiClient {
     return this.request<T>(endpoint, { method: 'GET' });
   }
 
-  async post<T>(endpoint: string, data: any): Promise<ApiResponse<T>> {
+  async post<T>(endpoint: string, data: unknown): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -66,9 +66,3 @@ class ApiClient {
 
 export const apiClient = new ApiClient(API_CONFIG.baseUrl, API_CONFIG.timeout);
 
-/**
- * WhatsApp API functions
- */
-export const whatsappApi = {
-  getInfo: () => apiClient.get(API_CONFIG.endpoints.whatsappInfo),
-};
