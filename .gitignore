@@ -12,6 +12,7 @@ dist-ssr/
 .env.*.local
 backend/.env
 backend/.env.local
+Usersyaqoob.git-credentials-food
 
 # Logs
 *.log
